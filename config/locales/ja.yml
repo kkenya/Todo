@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      user: 会員情報
+      task: タスク
+    attributes:
+      user:
+        name: ユーザー名
+      task:
+        title: タイトル
+        memo: メモ
+        released_at: 開始日時
+        expired_at: 終了日時
+  errors:
+    messages:
+      expired_at_too_old: は現在時刻より後に設定してください

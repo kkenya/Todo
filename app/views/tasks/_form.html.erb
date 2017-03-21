@@ -1,0 +1,16 @@
+<%= render "shared/errors", obj: @task %>
+
+<table class="attr">
+  <th><%= form.label :title %></th>
+  <td><%= form.text_field :title %></td>
+  <th><%= form.label :memo %></th>
+  <td><%= form.text_field :memo %></td>
+  <th><%= form.label :released_at, for: "task_released_at_1i" %></th>
+  <td><%= form.datetime_select :released_at,
+          start_time: 2000, end_year: Time.now.year + 1, use_month_numbers: true %>
+  </td>
+  <th><%= form.label :expired_at, for: "task_expired_at_1i"  %></th>
+  <td><%= form.datetime_select :expired_at,
+          start_time: 2000, end_year: Time.now.year + 1, use_month_numbers: true %>
+  </td>
+</table>
