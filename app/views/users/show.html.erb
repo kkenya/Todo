@@ -1,10 +1,12 @@
 <h1><%= @user.name %>さんの計画</h1>
 
-<p><%= link_to "編集", [:edit, @user] %></p>
+<p><%= link_to "会員一覧に戻る", :users %></p>
 
 <table class="attr">
   <tr>
     <th>ユーザー名</th>
     <td><%= @user.name %></td>
+    <td><%= link_to "編集", [:edit, @user] %> |</td>
+    <td><%= link_to "削除", @user, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
   </tr>
 </table>

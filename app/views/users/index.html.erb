@@ -14,7 +14,7 @@
     </tr>
     <% @users.each do |user| %>
       <tr>
-        <td style="text-align: right"><%= link_to user.name, user %></td>
+        <td style="text-align: right"><%= link_to user.name, [user, :tasks] %></td>
         <td>
           <%= link_to "編集", [:edit, user] %> |
           <%= link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか?" } %>
