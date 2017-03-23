@@ -1,0 +1,8 @@
+<%= render "shared/login_form" unless current_user %>
+
+<% if current_user %>
+<p class="user">
+<%= current_user.name %>さん |
+<%= link_to "ログアウト", :session, method: :delete, data: { confirm: "ログアウトしますか" } %>
+</p>
+<% end %>

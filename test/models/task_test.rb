@@ -38,6 +38,7 @@ class TaskTest < ActiveSupport::TestCase
 
   #openスコープのチェック
   test "open" do
+    user = FactoryGirl.create(:user)
     task1 = FactoryGirl.create(:task, title: "今日", released_at: Time.current, expired_at: Time.current.end_of_day)
     task2 = FactoryGirl.create(:task, title: "昨日", released_at: 1.day.ago, expired_at: 1.day.ago.end_of_day)
     task3 = FactoryGirl.create(:task, title: "明日", released_at: 1.day.from_now, expired_at: 2.days.from_now)

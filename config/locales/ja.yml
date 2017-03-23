@@ -6,6 +6,8 @@ ja:
     attributes:
       user:
         name: ユーザー名
+        password: パスワード
+        password_confirmation: パスワードの確認
       task:
         title: タイトル
         memo: メモ

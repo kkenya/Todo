@@ -7,4 +7,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def login_as(name)
+    session[:user_id] = FactoryGirl.create(:user, name: name)
+  end
+
+  def logout
+    session.delete(:user_id)
+  end
 end

@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :login_required, expect: [:index]
+
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])

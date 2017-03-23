@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test "index" do
+    login_as("taro")
+    get :index
+    assert_responce :success
+  end
+
 end
