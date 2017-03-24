@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root to: "users#index"
+  root "users#index"
   resources :users do
     collection { get "search" }
     resources :tasks, except: [:show]
   end
-  resources :tasks
+  # resources :tasks
   resource :session, only: [:create, :destroy]
 end

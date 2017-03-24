@@ -2,7 +2,7 @@
 
 <p><%= link_to "タスクの一覧に戻る", @tasks %></p>
 
-<%= form_for @task do |form| %>
+<%= form_for [@user,@task] do |form| %>
   <%= render "form", form: form %>
   <p><%= form.submit %></p>
 <% end %>

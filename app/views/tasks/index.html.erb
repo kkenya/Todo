@@ -1,18 +1,17 @@
-<h1>タスク一覧</h1>
+<h1><%= "#{@user.name}さんの" unless current_user %>タスク一覧</h1>
 
 <% if current_user %>
-  <p><%= link_to "タスクの新規作成", :new_task %></p>
+  <p><%= link_to "タスクの新規作成", [:new, @user, :task] %></p>
 <% end %>
-
-
-
-
-
 
 <% if @tasks.present? %>
   <table class="list">
     <tr>
       <th>タスク</th>
+      <th>詳細</th>
+      <th>開始日時</th>
+      <th>終了日時</th>
+      <th>編集</th>
     </tr>
     <% @tasks.each do |task| %>
     <tr>
@@ -20,8 +19,8 @@
       <td><%= task.memo %></td>
       <td><%= task.released_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
       <td><%= task.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-      <td><%= link_to "編集", [:edit, task] %> |
-        <%= link_to "削除", task, method: :delete, data: { confirm: "本当に削除しますか?" } %>
+      <td><%= link_to "編集", [:edit, @user, task] %> |
+        <%= link_to "削除", [@user, task], method: :delete, data: { confirm: "本当に削除しますか?" } %>
       </td>
     </tr>
     <% end %>
