@@ -2,8 +2,6 @@
 
 <p><%= link_to "会員の新規登録", :new_user unless current_user %></p>
 
-<%= render "shared/header" %>
-
 <%= form_tag :search_users, method: :get do %>
   <p><%= text_field_tag "q", params[:q] %>
   <%= submit_tag "検索" %></p>

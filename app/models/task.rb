@@ -14,7 +14,7 @@ class Task < ApplicationRecord
 
   private
   def check_expired_at
-    if expired_at.to_s < released_at.to_s
+    if released_at >= expired_at
       errors.add(:expired_at, :expired_at_too_old)
     end
   end

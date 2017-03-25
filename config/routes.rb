@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     collection { get "search" }
     resources :tasks, except: [:show]
   end
-  # resources :tasks
   resource :session, only: [:create, :destroy]
+  get "/login" => "sessions#create", as: :login
+  get "/logout" => "sessions#destroy", as: :logout
 end

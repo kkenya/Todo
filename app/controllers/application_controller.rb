@@ -3,12 +3,13 @@ class ApplicationController < ActionController::Base
 
   class Forbidden < StandardError; end
 
+  helper_method :current_user
+
   private
   def current_user
     #遅延初期化
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
-  helper_method :current_user
 
   def login_required
     raise Forbidden unless current_user

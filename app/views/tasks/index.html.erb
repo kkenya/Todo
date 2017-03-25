@@ -1,7 +1,7 @@
 <h1><%= "#{@user.name}さんの" unless current_user %>タスク一覧</h1>
 
 <% if current_user %>
-  <p><%= link_to "タスクの新規作成", [:new, @user, :task] %></p>
+  <p><%= link_to "タスクを作成する", [:new, @user, :task] %></p>
 <% end %>
 
 <% if @tasks.present? %>
