@@ -6,6 +6,11 @@ class Task < ApplicationRecord
   validates :memo, length: { maximum: 200 }
   validate :check_expired_at
 
+  def created_by?(user)
+    return false unless user
+    user_id == user.id
+  end
+
   scope :today, -> {
     day_start = Time.current.beginning_of_day
     midnight = Time.current.beginning_of_day.advance(days: 1)
