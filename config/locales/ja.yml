@@ -10,7 +10,7 @@ ja:
         password_confirmation: パスワードの確認
       task:
         title: タイトル
-        memo: メモ
+        memo: 詳細
         released_at: 開始日時
         expired_at: 終了日時
   errors:

@@ -7,4 +7,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_responce :success
   end
 
+  test "index before login" do
+    assert_raise(ApplicationController::Forbidden) { get :index }
+  end
+
 end

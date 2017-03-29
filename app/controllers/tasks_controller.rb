@@ -1,52 +1,41 @@
 class TasksController < ApplicationController
-  before_action :login_required, expect: [:index]
+  before_action :login_required, except: [:index]
 
   def index
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-      @tasks = @user.tasks
-    else
-      @tasks = Task.order(released_at: :desc)
-    end
+    @user = User.find(params[:user_id])
+    @tasks = @user.tasks.order(:released_at)
   end
 
   def new
-    @user = current_user
-    @task = Task.new(released_at: Time.current)
+    @task = current_user.tasks.build(released_at: Time.current)
   end
 
   def edit
-    @user = current_user
     @task = current_user.tasks.find(params[:id])
   end
 
   def create
-    @user = current_user
-    @task = Task.new(task_params)
-    @task.user = current_user
+    @task = current_user.tasks.build(task_params)
     if @task.save
-      redirect_to [@task.user, :tasks], notice: "タスクを作成しました"
+      redirect_to [current_user, :tasks], notice: "タスクを作成しました"
     else
-      render "new"
+      render :new
     end
   end
 
   def update
-    @user = current_user
     @task = current_user.tasks.find(params[:id])
-    @task.assign_attributes(task_params)
-    if @task.save
-      redirect_to [@user, :tasks], notice: "タスクを更新しました"
+    if @task.update(task_params)
+      redirect_to [current_user, :tasks], notice: "タスクを更新しました"
     else
-      render "edit"
+      render :edit
     end
   end
 
   def destroy
-    @user = current_user
     @task = current_user.tasks.find(params[:id])
-    @task.destroy
-    redirect_to [@user, :tasks], notice: "タスクを削除しました"
+    @task.destroy!
+    redirect_to [current_user, :tasks], notice: "タスクを削除しました"
   end
 
 

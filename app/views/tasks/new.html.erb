@@ -1,6 +1,8 @@
-<h1>タスクの新規作成</h1>
+<div class="page-header">
+  <h1>タスク作成</h1>
+</div>
 
-<%= form_for [@user, @task] do |form| %>
+<%= form_for [current_user, @task] do |form| %>
   <%= render "form", form: form %>
-  <p><%= form.submit %></p>
+  <%= form.submit "登録する", class: "btn btn-default", data: { disable_with: "作成中" } %>
 <% end %>

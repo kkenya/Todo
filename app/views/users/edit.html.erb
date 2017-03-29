@@ -1,6 +1,8 @@
-<h1>会員情報の編集</h1>
+<div class="page-header">
+  <h1>会員情報の編集</h1>
+</div>
 
 <%= form_for @user do |form| %>
   <%= render "form", form: form %>
-  <p><%= form.submit %></p>
+  <%= form.submit "更新する", class: "btn btn-default", data: { disable_with: "更新中" } %>
 <% end %>

@@ -1,8 +1,22 @@
-<%= render "shared/login_form" unless current_user %>
+<% unless current_user %>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <%= form_tag :session, class: "form-inline" do %>
+    <div class="nav navbar-nav navbar-right">
+      <div class="form-group ">
+        <label for="InputName">ユーザー名</label>
+        <%= text_field_tag "name", "", class: "form-control input-sm", id: "InputName"%>
+      </div>
+      <div class="form-group">
+        <label for="InputPassword">パスワード</label>
+        <%= password_field_tag "password", "", class: "form-control input-sm", id: "InputPassword" %>
+        <%= submit_tag "ログイン", class: "btn btn-default btn-sm", data: { disable_with: "ログイン中" } %>
+    <% end %>
+  </div>
+<% end %>
 
 <% if current_user %>
 <p class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-<%= current_user.name %>さん |
-<%= link_to "ログアウト", logout_path, method: :delete, data: { confirm: "ログアウトしますか" } %>
+<%= current_user.name %>さん
+<%= link_to "ログアウト", :session, method: :delete, class: "btn btn-default btn-sm" %>
 </p>
 <% end %>

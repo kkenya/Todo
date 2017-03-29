@@ -15,14 +15,6 @@ class User < ApplicationRecord
   end
 
   class << self
-    def search(query)
-      rel = order("name")
-      if query.present?
-        rel = rel.where("name LIKE ?", "%#{query}%")
-      end
-      rel
-    end
-
     def authenticate(name, password)
       user = find_by(name: name)
       if user && user.hashed_password.present? && BCrypt::Password.new(user.hashed_password) == password

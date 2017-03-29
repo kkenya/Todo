@@ -1,7 +1,12 @@
 require 'test_helper'
 
 class TasksControllerTest < ActionController::TestCase
+  def setup
+    login_as("taro")
+  end
+
   test "index" do
+    logout
     5.times { FactoryGirl.create(:task) }
     get :index
     assert_response :success
@@ -13,9 +18,14 @@ class TasksControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "new before login" do
+    logout
+    assert_raise(ApplicationController::Forbidden) { get :new }
+  end
+
   test "edit" do
     task = FactoryGirl.create(:task)
-    get :edit, params: { id: task }
+    get :edit, params: { task: task }
     assert_response :success
   end
 
@@ -29,7 +39,7 @@ class TasksControllerTest < ActionController::TestCase
   test "update" do
     task = FactoryGirl.create(:task)
     patch :update, params: { id: task , task: FactoryGirl.attributes_for(:task) }
-    # assert_redirected_to :tasks
+    assert_redirected_to :tasks
     assert_template "index"
   end
 

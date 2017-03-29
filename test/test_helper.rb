@@ -7,6 +7,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  private
+  #A session generally exists in the controller. http://stackoverflow.com/questions/20872121/undefined-method-session-for-nilnilclass-in-rspec-rails
+
+  include ApplicationHelper
+  #ログイン状態にする
   def login_as(name)
     session[:user_id] = FactoryGirl.create(:user, name: name)
   end
