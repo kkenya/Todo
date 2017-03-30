@@ -3,31 +3,34 @@
 </div>
 
 <% if current_user == @user %>
-  <p><%= link_to "タスクを作成する", [:new, current_user, :task] %></p>
+<p><%= link_to "タスクを作成する", [:new, current_user, :task] %></p>
 <% end %>
 
-<% if @user.tasks.present? %>
-  <div class="list-group">
-    <% @tasks.daily.each do |task| %>
-    <div class="list-group-item">
-      <h3 class="list-group-item-heading">
-        <%= task.title %>
-        <span class="text-muted"><small>
-          <%= task.status %>
-        </small></span>
-      </h3>
-      <% if task.created_by?(current_user) %>
-      <div class="text-right">
-        <%= link_to "編集", [:edit, current_user, task], class: "btn btn-primary" %>
-        <%= link_to "削除", [current_user, task], method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-danger" %>
-      </div>
+<div class="row">
+  <div class="col-md-6">
+    <% if @user.tasks.present? %>
+    <div class="list-group">
+      <% @tasks.daily.each do |task| %>
+      <%= render "attributes", task: task %>
       <% end %>
-      <div class="list-group-item-text">
-        <p><%= task.memo %></p>
-      </div>
     </div>
-    <% end %>
   </div>
+
+  <div class="col-md-6">
+    <div class="list-group">
+      <% @tasks.weekly.each do |task| %>
+      <%= render "attributes", task: task %>
+      <% end %>
+    </div>
+
+    <div class="list-group">
+      <% @tasks.monthly.each do |task| %>
+      <%= render "attributes", task: task %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <% else %>
-  <h1>タスクがありません</h1>
+<h1>タスクがありません</h1>
 <% end %>
