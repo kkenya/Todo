@@ -4,20 +4,33 @@
 
 <p><%= link_to "会員の新規登録", :new_user unless current_user %></p>
 
-<% if @users.present? %>
-  <% @users.each do |user| %>
-  <table class="table">
-    <tr>
-      <th>
-        <%= link_to user.name, [user, :tasks] %>
-      </th>
-      <td>
-        <%= link_to "編集", [:edit, user], class: "btn btn-primary btn-sm" %>
-        <%= link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-danger btn-sm" %>
-      </td>
-    </tr>
-  <% end %>
-  </table>
-<% else %>
-  <h1>会員情報がありません</h1>
-<% end %>
+<div class="row">
+  <div class="col-md-8">
+    <% if @users.present? %>
+    <% @users.each do |user| %>
+    <table class="table">
+      <tr>
+        <th>
+          <%= link_to user.name, [user, :tasks] %>
+        </th>
+        <td>
+          <%= link_to "編集", [:edit, user], class: "btn btn-primary btn-sm" %>
+          <%= link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-danger btn-sm" %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+    <% else %>
+    <h1>会員情報がありません</h1>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <%= form_tag :search_users, method: :get, class: "form-inline text-right" do %>
+    <div class="form-group">
+      <%= text_field_tag "q", params[:q], class: "form-control", placeholder: "ユーザー名" %>
+    </div>
+    <%= submit_tag "検索", class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>

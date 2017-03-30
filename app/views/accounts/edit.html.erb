@@ -1,0 +1,10 @@
+<div class="page-header">
+  <h1>アカウント情報の編集</h1>
+</div>
+
+<p><%= link_to "マイアカウントに戻る", :account %></p>
+
+<%= form_for @user, as: "account", url: :account do |form| %>
+<%= render "users/form", form: form %>
+<%= form.submit "更新する", class: "btn btn-default", data: { disable_with: "更新中" } %>
+<% end %>

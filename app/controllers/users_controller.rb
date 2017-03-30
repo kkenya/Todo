@@ -3,6 +3,11 @@ class UsersController < ApplicationController
     @users = User.order("name")
   end
 
+  def search
+    @users = User.search(params[:q])
+    render :index
+  end
+
   def new
     @user = User.new
   end
@@ -22,9 +27,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.assign_attributes(user_params)
-    if @user.save
-      redirect_to controller: "tasks", action: "index", notice: "会員情報を更新しました"
+    if @user.update(user_params)
+      redirect_to [@user, :tasks], notice: "会員情報を更新しました"
     else
       render :edit
     end
