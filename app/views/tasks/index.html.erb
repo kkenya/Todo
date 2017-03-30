@@ -8,12 +8,12 @@
 
 <% if @user.tasks.present? %>
   <div class="list-group">
-    <% @tasks.each do |task| %>
+    <% @tasks.daily.each do |task| %>
     <div class="list-group-item">
       <h3 class="list-group-item-heading">
         <%= task.title %>
         <span class="text-muted"><small>
-          <%= task.released_at.strftime("%Y/%m/%d %H:%M") %> - <%= task.created_at.strftime("%Y/%m/%d %H:%M") %>
+          <%= task.status %>
         </small></span>
       </h3>
       <% if task.created_by?(current_user) %>
@@ -29,5 +29,5 @@
     <% end %>
   </div>
 <% else %>
-  <p>タスクがありません</p>
+  <h1>タスクがありません</h1>
 <% end %>

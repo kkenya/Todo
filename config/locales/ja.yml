@@ -11,8 +11,10 @@ ja:
       task:
         title: タイトル
         memo: 詳細
-        released_at: 開始日時
-        expired_at: 終了日時
+        status: 期限
+        status_today: 当日
+        status_week: 今週
+        status_month: 今月
   errors:
     messages:
       expired_at_too_old: は現在時刻より後に設定してください

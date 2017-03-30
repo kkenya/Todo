@@ -3,11 +3,11 @@ class TasksController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @tasks = @user.tasks.order(:released_at)
+    @tasks = @user.tasks.order(:created_at)
   end
 
   def new
-    @task = current_user.tasks.build(released_at: Time.current)
+    @task = current_user.tasks.build
   end
 
   def edit
@@ -41,6 +41,6 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :memo, :released_at, :expired_at)
+    params.require(:task).permit(:title, :memo, :status)
   end
 end
