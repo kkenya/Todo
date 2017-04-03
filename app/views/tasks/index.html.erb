@@ -2,14 +2,17 @@
   <h1><%= "#{@user.name}さんの"%>タスク一覧</h1>
 </div>
 
-<% if current_user == @user %>
-<p><%= link_to "タスクを作成する", [:new, current_user, :task] %></p>
-<% end %>
+<p><%= link_to "タスクを作成する", [:new, current_user, :task] if current_user == @user %></p>
 
 <div class="row">
+  <% if @user.tasks.present? %>
   <div class="col-md-6">
-    <% if @user.tasks.present? %>
     <div class="list-group">
+      <div class="list-group-item list-group-item-danger">
+        <div class="list-group-item-heading">
+            今日のタスク
+        </div>
+      </div>
       <% @tasks.daily.each do |task| %>
       <%= render "attributes", task: task %>
       <% end %>
@@ -18,19 +21,29 @@
 
   <div class="col-md-6">
     <div class="list-group">
+      <div class="list-group-item list-group-item-success">
+        <div class="list-group-item-heading">
+            今週のタスク
+        </div>
+      </div>
       <% @tasks.weekly.each do |task| %>
       <%= render "attributes", task: task %>
       <% end %>
     </div>
 
     <div class="list-group">
+      <div class="list-group-item list-group-item-info">
+        <div class="list-group-item-heading">
+            今月のタスク
+        </div>
+      </div>
       <% @tasks.monthly.each do |task| %>
       <%= render "attributes", task: task %>
       <% end %>
     </div>
   </div>
-</div>
 
-<% else %>
-<h1>タスクがありません</h1>
-<% end %>
+  <% else %>
+  <h4>タスクがありません</h4>
+  <% end %>
+</div>

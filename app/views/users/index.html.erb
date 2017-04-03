@@ -1,23 +1,18 @@
 <div class="page-header">
-  <h1>会員一覧</h1>
+  <h1>ユーザーの一覧</h1>
 </div>
 
 <p><%= link_to "会員の新規登録", :new_user unless current_user %></p>
 
+<% if @users.present? %>
 <div class="row">
   <div class="col-md-8">
-    <% if @users.present? %>
     <% @users.each do |user| %>
-    <table class="table">
-      <tr>
-        <th>
-          <%= link_to user.name, [user, :tasks] %>
-        </th>
-      </tr>
-      <% end %>
-    </table>
-    <% else %>
-    <h1>会員情報がありません</h1>
+    <div class="panel panel-default">
+      <div class="panel-body">
+      <p><%= link_to user.name, [user, :tasks] %></p>
+      </div>
+    </div>
     <% end %>
   </div>
 
@@ -30,3 +25,7 @@
     <% end %>
   </div>
 </div>
+
+<% else %>
+<h4>ユーザーが登録されていません</h4>
+<% end %>
