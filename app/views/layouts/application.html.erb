@@ -20,7 +20,7 @@
             <span class="icon-bar"></span>
           </button>
           <% if controller.kind_of?(Admin::Base) %>
-          <%= link_to "Todo(管理者)", :admin_root, class: "navbar-brand" %>
+          <%= link_to "Todo::Admin", :admin_root, class: "navbar-brand" %>
           <% else %>
           <%= link_to "Todo", root_path, class: "navbar-brand" %>
           <% end %>
