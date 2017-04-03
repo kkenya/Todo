@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330025851) do
+ActiveRecord::Schema.define(version: 20170403074417) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "user_id",                      null: false
@@ -23,10 +23,11 @@ ActiveRecord::Schema.define(version: 20170330025851) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "name",                            null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "hashed_password"
+    t.boolean  "administrator",   default: false
   end
 
 end

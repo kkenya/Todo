@@ -19,7 +19,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to 'Todo', root_path, class: 'navbar-brand' %>
+          <% if controller.kind_of?(Admin::Base) %>
+          <%= link_to "Todo(管理者)", :admin_root, class: "navbar-brand" %>
+          <% else %>
+          <%= link_to "Todo", root_path, class: "navbar-brand" %>
+          <% end %>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

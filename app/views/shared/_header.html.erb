@@ -1,32 +1,36 @@
   <div class="navbar-right">
     <% unless current_user %>
-    <%= form_tag :session, class: "navbar-form", role: "search" do %>
-    <div class="form-group ">
-      <%= text_field_tag "name", "", class: "form-control input-sm", placeholder: "ユーザー名" %>
-    </div>
-    <div class="form-group">
-      <%= password_field_tag "password", "", class: "form-control input-sm", placeholder: "パスワード" %>
-    </div>
-    <%= submit_tag "ログイン", class: "btn btn-default btn-sm" %>
-    <% end %>
+      <%= form_tag :session, class: "navbar-form", role: "search" do %>
+      <div class="form-group ">
+        <%= text_field_tag "name", "", class: "form-control input-sm", placeholder: "ユーザー名" %>
+      </div>
+      <div class="form-group">
+        <%= password_field_tag "password", "", class: "form-control input-sm", placeholder: "パスワード" %>
+      </div>
+      <%= submit_tag "ログイン", class: "btn btn-default btn-sm" %>
+      <% end %>
     <% else %>
-    <ul class="nav navbar-nav">
-      <li>
-        <%= link_to current_user.name + "さん", [current_user, :tasks] %>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          メニュー
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li><%= link_to "ログアウト", :session, method: :delete %></li>
-          <li role="separator" class="divider"></li>
-          <li><%= link_to "アカウント情報の編集", :edit_account %></li>
-          <li role="separator" class="divider"></li>
-          <li><%= link_to "退会", :retire_account %></li>
-        </ul>
-      </li>
-    </ul>
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to current_user.name + "さん", [current_user, :tasks] %>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            メニュー
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "ログアウト", :session, method: :delete %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "アカウント情報の編集", :edit_account %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "退会", :retire_account %></li>
+            <% if current_user.administrator? %>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "管理ページ", :admin_root %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
     <% end %>
   </div>
