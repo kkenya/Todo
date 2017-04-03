@@ -1,10 +1,6 @@
 class AccountsController < ApplicationController
   before_action :login_required
 
-  def show
-    @user = current_user
-  end
-
   def edit
     @user = current_user
   end
@@ -12,13 +8,19 @@ class AccountsController < ApplicationController
   def update
     @user = current_user
     if @user.update(account_params)
-      redirect_to :account, notice: "アカウント情報を更新しました"
+      redirect_to [@user, :tasks], notice: "アカウント情報を更新しました"
     else
-      render :new
+      render :edit
     end
+  end
 
-    def destroy
-    end
+  def retire
+  end
+
+  def destroy
+    current_user.destroy!
+    reset_session
+    redirect_to :root, notice: "退会しました"
   end
 
   private

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "top#index"
-    resources :users, except [:show] do
+    resources :users, except: [:show] do
       collection { get "search" }
       resources :tasks, except: [:show]
     end
