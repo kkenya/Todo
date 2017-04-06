@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # get "/logout" => "sessions#destroy", as: :logout
 
   namespace :admin do
-    root "top#index"
+    root "users#index"
     resources :users, except: [:show] do
       collection { get "search" }
       resources :tasks, except: [:show]

@@ -35,6 +35,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails-i18n'
 #scssでのbootstrapを使用する
 gem 'bootstrap-sass'
+#ページネーション
+gem 'kaminari'
+#kaminariをbootstrapに適応させる
+gem 'kaminari-bootstrap'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+PER = 6
+
   def index
-    @users = User.order("name")
+    @users = User.page(params[:page]).per(PER).order("name")
   end
 
   def search
@@ -20,25 +22,6 @@ class UsersController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to [@user, :tasks], notice: "会員情報を更新しました"
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy!
-    redirect_to :users, notice: "会員情報を削除しました"
   end
 
   def user_params

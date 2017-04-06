@@ -4,13 +4,13 @@ class Task < ApplicationRecord
   STATUS_VALUES = %w(today week month)
 
   validates :title, :status, presence: true
-  validates :title, length: { maximum: 100 }
+  validates :title, length: { maximum: 50 }
   validates :memo, length: { maximum: 200 }
   validates :status, inclusion: { in: STATUS_VALUES }
 
-  scope :daily, -> { where(status: "today") }
-  scope :weekly, -> { where(status: "week") }
-  scope :monthly, -> { where(status: "month") }
+  scope :daily, -> { where("status = ? and created_at >= ? and created_at <= ?", "today", Time.current.beginning_of_day, Time.current.end_of_day) }
+  scope :weekly, -> { where("status = ? and created_at >= ? and created_at <= ?", "week", Time.current.beginning_of_week, Time.current.end_of_week) }
+  scope :monthly, -> { where("status = ? and created_at >= ?and created_at <= ?", "month", Time.current.beginning_of_month, Time.current.end_of_month) }
 
   class << self
     def status_text(status)
@@ -25,12 +25,5 @@ class Task < ApplicationRecord
   def created_by?(user)
     return false unless user
     user_id == user.id
-  end
-
-  private
-  def check_expired_at
-    if released_at >= expired_at
-      errors.add(:expired_at, :expired_at_too_old)
-    end
   end
 end

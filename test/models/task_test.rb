@@ -6,12 +6,9 @@ class TaskTest < ActiveSupport::TestCase
     task = Task.new
     assert task.invalid?
     assert task.errors.include?(:title)
-    # assert task.errors.include?(:memo)
-    assert task.errors.include?(:released_at)
-    assert task.errors.include?(:expired_at)
   end
 
-  #タイトルの長さは100以下
+  #タイトルの長さは50以下
   test "tlength" do
     task = FactoryGirl.build(:task)
     task.title = "a" * 101
@@ -27,25 +24,35 @@ class TaskTest < ActiveSupport::TestCase
     assert task.errors.include?(:memo)
   end
 
-  #タスクの掲載有効期間は掲載日時より後
-  test "expired_at" do
+  #期限は３通り
+  test "status" do
     task = FactoryGirl.build(:task)
-    task.released_at = Time.current
-    task.expired_at = 1.days.ago
+    task.status = "aaa"
     assert task.invalid?
-    assert task.errors.include?(:expired_at)
+    assert task.errors.include?(:status)
   end
 
-  #openスコープのチェック
-  test "open" do
-    user = FactoryGirl.create(:user)
-    task1 = FactoryGirl.create(:task, title: "今日", released_at: Time.current, expired_at: Time.current.end_of_day)
-    task2 = FactoryGirl.create(:task, title: "昨日", released_at: 1.day.ago, expired_at: 1.day.ago.end_of_day)
-    task3 = FactoryGirl.create(:task, title: "明日", released_at: 1.day.from_now, expired_at: 2.days.from_now)
+  #dailyスコープのチェック
+  test "daily" do
+    task1 = FactoryGirl.create(:task, title: "今日", status: "today", created_at: Time.now)
+    task2 = FactoryGirl.create(:task, title: "昨日", status: "today", created_at: 1.day.ago)
+    task3 = FactoryGirl.create(:task, title: "明日", status: "today", created_at: 1.day.since)
 
-    tasks = Task.today
+    tasks = Task.daily
     assert_includes tasks, task1, "今日のタスクが含まれる"
-    refute_includes tasks, task2, "昨日の記事は含まれない"
-    refute_includes tasks, task3, "明日の記事は含まれない"
+    refute_includes tasks, task2, "昨日のタスクは含まれない"
+    refute_includes tasks, task3, "明日のタスクは含まれない"
+  end
+
+  #monthlyスコープのチェック
+  test "monthly" do
+    task1 = FactoryGirl.create(:task, title: "今週", status: "month", created_at: Time.now)
+    task2 = FactoryGirl.create(:task, title: "先週", status: "month", created_at: 1.month.ago)
+    task3 = FactoryGirl.create(:task, title: "来週", status: "month", created_at: 1.month.since)
+
+    tasks = Task.monthly
+    assert_includes tasks, task1, "今月のタスクが含まれる"
+    refute_includes tasks, task2, "先月のタスクは含まれない"
+    refute_includes tasks, task3, "来月のタスクは含まれない"
   end
 end
