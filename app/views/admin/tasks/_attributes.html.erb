@@ -1,0 +1,19 @@
+<div class="list-group-item">
+  <div class="row">
+    <div class="col-md-8">
+      <h4 class="list-group-item-heading">
+        <%= task.title %>
+        <small><%= task.created_at %></small>
+      </h4>
+      <div class="list-group-item-text">
+        <p><%= task.memo %></p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="text-right">
+        <%= link_to "編集", [:edit, :admin, @user, task], class: "btn btn-primary btn-sm" %>
+        <%= link_to "削除", [:admin, @user, task], method: :delete, class: "btn btn-danger btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>

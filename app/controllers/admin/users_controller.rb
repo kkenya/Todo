@@ -1,10 +1,12 @@
 class Admin::UsersController < Admin::Base
+  PER = 6
+
   def index
-    @users = User.order("name")
+    @users = User.page(params[:page]).per(PER).order("name")
   end
 
   def search
-    @users = User.search(params[:q])
+    @users = User.page(params[:page]).per(PER).search(params[:q]).order("name")
     render :index
   end
 
@@ -38,7 +40,7 @@ class Admin::UsersController < Admin::Base
   def destroy
     @user = User.find(params[:id])
     @user.destroy!
-    redirect_to :admin_users, notice: "会員情報を削除しました"
+    redirect_to [:admin, :users], notice: "会員情報を削除しました"
   end
 
   def user_params

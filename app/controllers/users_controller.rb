@@ -6,7 +6,7 @@ PER = 6
   end
 
   def search
-    @users = User.search(params[:q])
+    @users = User.page(params[:page]).per(PER).search(params[:q]).order("name")
     render :index
   end
 
