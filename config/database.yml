@@ -24,7 +24,7 @@ production:
   <<: *default
   adapter: postgresql
   encoding: utf8
-  database: db/production.pg
+  database:
   port: 5432
   username: kenya kawatsu
   password: 2Fm1-20kk
