@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   end
 
   resource :session, only: [:create, :destroy]
-  # get "/login" => "sessions#create", as: :login
-  # get "/logout" => "sessions#destroy", as: :logout
 
   namespace :admin do
     root "users#index"
@@ -19,4 +17,6 @@ Rails.application.routes.draw do
       resources :tasks, except: [:show]
     end
   end
+
+  get "*path" => "application#error404"
 end
