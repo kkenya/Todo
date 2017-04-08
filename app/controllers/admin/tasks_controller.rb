@@ -1,4 +1,4 @@
-class Admin::TasksController < ApplicationController
+class Admin::TasksController < Admin::Base
 
   def index
     @user = User.find(params[:user_id])

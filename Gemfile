@@ -68,5 +68,5 @@ group :production do
   #PostgreSQLデータベースを使用する
   gem 'pg'
   #Herokuで静的なアセットを提供する
-  gem 'rails_12factory'
+  gem 'rails_12factor'
 end
