@@ -58,12 +58,15 @@ group :development do
 end
 
 group :test do
+  #factory_girlを使用する
   gem 'factory_girl_rails', '~> 4.4.0'
-  #controllerでのtest
+  #controllerでのtestを行う
   gem 'rails-controller-testing'
 end
 
 group :production do
+  #PostgreSQLデータベースを使用する
   gem 'pg'
+  #Herokuで静的なアセットを提供する
   gem 'rails_12factory'
 end
