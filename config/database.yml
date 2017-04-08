@@ -26,6 +26,6 @@ production:
   encoding: utf8
   database:
   port: 5432
-  username: kenya kawatsu
-  password: 2Fm1-20kk
+  username:
+  password:
 
