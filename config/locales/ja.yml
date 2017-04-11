@@ -22,6 +22,12 @@ ja:
         status_today: 当日
         status_week: 今週
         status_month: 今月
+      user_image:
+        uploaded_image: 画像
+        destroy: 削除する
+      image:
+        uploaded_image: 画像
   errors:
     messages:
-      expired_at_too_old: は現在時刻より後に設定してください
+      too_big_image: が大きすぎます(最大64KB)
+      invalid_image: の形式が違います(JPEG, GIF, PNGのどれかにしてください)

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
+  has_one :image, class_name: "user_images", dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: false
   validates :password, presence: { on: :create }, confirmation: { allow_blank: true }
