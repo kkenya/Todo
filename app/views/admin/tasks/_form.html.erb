@@ -13,4 +13,8 @@
       <%= form.select :status, Task.status_options %>
     </div>
   </div>
+  <label class="c-input c-radio">
+  <%= form.radio_button :open, true %>公開
+  <%= form.radio_button :open,false %>非公開
+  </label>
 </div>

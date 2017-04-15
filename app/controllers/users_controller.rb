@@ -2,11 +2,11 @@ class UsersController < ApplicationController
 PER = 6
 
   def index
-    @users = User.page(params[:page]).per(PER).order("name")
+    @users = User.page(params[:page]).per(PER).order(:updated_at)
   end
 
   def search
-    @users = User.page(params[:page]).per(PER).search(params[:q]).order("name")
+    @users = User.page(params[:page]).per(PER).search(params[:q]).order(:name)
     render :index
   end
 

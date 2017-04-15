@@ -1,11 +1,13 @@
 <div class="list-group-item">
   <% unless task.created_by?(current_user) %>
+  <% if task.open %>
   <h4 class="list-group-item-heading">
     <%= task.title %>
   </h4>
   <div class="list-group-item-text">
     <p><%= task.memo %></p>
   </div>
+  <% end %>
 
   <% else %>
 
@@ -13,6 +15,9 @@
     <div class="col-md-8 col-xs-12">
       <h4 class="list-group-item-heading">
         <%= task.title %>
+        <% unless task.open %>
+        <span class="glyphicon glyphicon-sunglasses"></span>
+        <% end %>
       </h4>
       <div class="list-group-item-text">
         <p><%= task.memo %></p>

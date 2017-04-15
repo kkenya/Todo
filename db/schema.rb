@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411015429) do
+ActiveRecord::Schema.define(version: 20170415142903) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "user_id",                      null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170411015429) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.string   "status",     default: "today", null: false
+    t.boolean  "open",       default: true,    null: false
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 

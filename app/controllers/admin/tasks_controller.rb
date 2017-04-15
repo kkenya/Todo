@@ -45,6 +45,6 @@ class Admin::TasksController < Admin::Base
 
   private
   def task_params
-    params.require(:task).permit(:title, :memo, :status)
+    params.require(:task).permit(:title, :memo, :status, :open)
   end
 end

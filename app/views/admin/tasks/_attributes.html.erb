@@ -3,6 +3,9 @@
     <div class="col-md-8 col-xs-12">
       <h4 class="list-group-item-heading">
         <%= task.title %>
+        <% unless task.open %>
+        <span class="glyphicon glyphicon-sunglasses"></span>
+        <% end %>
       </h4>
       <div class="list-group-item-text">
         <p><%= task.memo %></p>
