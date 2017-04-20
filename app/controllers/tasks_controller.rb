@@ -6,6 +6,11 @@ class TasksController < ApplicationController
     @tasks = @user.tasks.order(:created_at)
   end
 
+  def show
+    @task = current_user.tasks.find(params[:id])
+    @speacks = @task.speacks.includes(:user).order(:created_at)
+  end
+
   def new
     @task = current_user.tasks.build
   end

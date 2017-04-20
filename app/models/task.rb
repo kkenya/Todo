@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  has_many :speacks
   belongs_to :user
 
   STATUS_VALUES = %w(today week month)

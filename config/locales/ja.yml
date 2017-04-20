@@ -22,6 +22,8 @@ ja:
         status_today: 当日
         status_week: 今週
         status_month: 今月
+      speack:
+        comment: コメント
       user_image:
         uploaded_image: 画像
         destroy: 削除する

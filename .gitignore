@@ -17,3 +17,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+#ignore erd file
+erd.pdf
+.idea/
