@@ -6,6 +6,9 @@ class TasksController < ApplicationController
     @tasks = @user.tasks.order(:created_at)
   end
 
+  def show
+  end
+
   def new
     @task = current_user.tasks.build
   end

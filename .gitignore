@@ -19,6 +19,5 @@
 .byebug_history
 
 # Ignore erd generated files
+erd.pdf
 .idea/*
-
-

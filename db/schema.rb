@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415142903) do
+ActiveRecord::Schema.define(version: 20170416221051) do
+
+  create_table "speacks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "task_id",    null: false
+    t.string   "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id", "user_id"], name: "index_speacks_on_task_id_and_user_id"
+    t.index ["task_id"], name: "index_speacks_on_task_id"
+    t.index ["user_id", "task_id"], name: "index_speacks_on_user_id_and_task_id"
+    t.index ["user_id"], name: "index_speacks_on_user_id"
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "user_id",                      null: false

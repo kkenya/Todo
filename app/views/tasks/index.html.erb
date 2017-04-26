@@ -4,7 +4,7 @@
 
 <p>
   <%= link_to "タスクを作成する", [:new, current_user, :task], class: "btn btn-default" if current_user == @user %>
-  非公開のタスクには<span class="glyphicon glyphicon-sunglasses"></span>アイコンが表示されます
+  非公開のタスクには<span class="glyphicon glyphicon-eye-close"></span>が表示されます
 </p>
 
 <div class="row">
@@ -19,12 +19,6 @@
       <% @tasks.daily.each do |task| %>
       <%= render "attributes", task: task %>
       <% end %>
-      <% else %>
-      <div class="list-group-item">
-        <div class="list-group-item-text">
-          <p>タスクがありません</p>
-        </div>
-      </div>
       <% end %>
     </div>
   </div>
@@ -40,12 +34,6 @@
       <% @tasks.weekly.each do |task| %>
       <%= render "attributes", task: task %>
       <% end %>
-      <% else %>
-      <div class="list-group-item">
-        <div class="list-group-item-text">
-          <p>タスクがありません</p>
-        </div>
-      </div>
       <% end %>
     </div>
 
@@ -59,12 +47,6 @@
       <% @tasks.monthly.each do |task| %>
       <%= render "attributes", task: task %>
       <% end %>
-      <% else %>
-      <div class="list-group-item">
-        <div class="list-group-item-text">
-          <p>タスクがありません</p>
-        </div>
-      </div>
       <% end %>
     </div>
   </div>
