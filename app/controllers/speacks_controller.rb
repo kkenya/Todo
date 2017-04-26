@@ -1,5 +1,11 @@
 class SpeacksController < ApplicationController
-  before_action :login_required
+  before_action :login_required, except: [:index]
+
+  def index
+    @task = Task.find(params[:task_id])
+    @speacks = @task.speacks.includes(:user).order(:created_at)
+    @speack = @speacks.where(task_id: params[:task_id])
+  end
 
   def new
     raise ActionController::RoutingError, "不正なアクセス"
@@ -12,12 +18,11 @@ class SpeacksController < ApplicationController
       s.comment = params[:speack][:comment]
     end
     if speack.save
-      redirect_to [@task.user, @task], notice: "コメントしました"
-      # flash[:notice] = "コメントしました"
-      # head 201
+      @speack = current_user.speacks.where(task_id: @task.id)
+      flash[:notice] = "コメントしました"
+      head 201
     else
-      redirect_to root_path
-      # render json: { messages: speack.errors.full_messages }, status: 422
+      render json: { messages: speack.errors.full_messages }, status: 422
     end
   end
 
@@ -25,6 +30,6 @@ class SpeacksController < ApplicationController
     @task = Task.find(params[:task_id])
     @speack = current_user.speacks.find_by!(task_id: params[:task_id])
     @speack.destroy!
-    redirect_to [@task.user, @task], notice: "コメントを削除しました"
+    redirect_to [@task.user, @task, :speacks], notice: "コメントを削除しました"
   end
 end

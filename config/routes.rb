@@ -2,12 +2,10 @@ Rails.application.routes.draw do
   root "users#index"
   resources :users, only: [:index, :new, :create] do
     collection { get "search" }
-    resources :tasks do
+    resources :tasks, except: [:show] do
       resources :speacks
     end
   end
-
-  resources :speacks
 
   resource :account, only: [:edit, :update, :destroy] do
     get "retire"

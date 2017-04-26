@@ -4,16 +4,18 @@
 
 <div class="row">
   <div class="col-md-8">
-    <% @speacks.each do |speack| %>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <%= speack.user.name %>
-          </div>
-          <div class="panel-body">
-            <%= speack.comment %>
-          </div>
-        </div>
+        <table class="table table-hover table-striped">
+          <% @speacks.each do |speack| %>
+        <tr>
+            <th>
+              <%= link_to speack.user.name, [speack.user, :tasks] %>
+            </th>
+            <td>
+              <%= speack.comment %>
+            </td>
+          </tr>
     <% end %>
+    </table>
   </div>
   <div class="col-md-4">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createSpeack">
@@ -35,14 +37,14 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
-                <%= form.button "送信", class: "btn btn-primary", data: {disable_with: "送信中", dismiss: "modal"} %>
+                <%= form.submit "送信", class: "btn btn-primary", data: {disable_with: "送信中", toggle: "modal", target: "#createSpeak"} %>
               </div>
           <% end %>
         </div>
       </div>
     </div>
     <% if current_user %>
-        <%= link_to "コメントを削除する", @speak, method: :delete, class: "btn btn-danger" %>
+        <%= link_to "コメントを削除する", user_task_speack_path(@task.user, @task, @speack), method: :delete, data: { confirm: "本当に削除しますか" }, class: "btn btn-danger" %>
     <% end %>
   </div>
 </div>
