@@ -41,11 +41,19 @@ gem 'kaminari-bootstrap'
 
 group :development, :test do
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+  gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   #er図の生成を行う
   gem 'rails-erd'
+  # irbをより高機能に、ブレークポイントを作成
+  gem 'pry-rails'
+  # Pryでのステップ実行を行う
+  gem 'pry-byebug'
+  # factory_girlを使用する
+  gem 'factory_girl_rails', '~> 4.4.0'
+  #rspecによるテストを行う
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -55,19 +63,18 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # N+1問題の検出する
   gem 'bullet'
 end
 
 group :test do
-  #factory_girlを使用する
-  gem 'factory_girl_rails', '~> 4.4.0'
   #controllerでのtestを行う
   gem 'rails-controller-testing'
 end
 
 group :production do
-  #PostgreSQLデータベースを使用する
+  # PostgreSQLデータベースを使用する
   gem 'pg'
-  #Herokuで静的なアセットを提供する
+  # Herokuで静的なアセットを提供する
   gem 'rails_12factor'
 end

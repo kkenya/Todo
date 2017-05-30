@@ -5,7 +5,7 @@ class Task < ApplicationRecord
   STATUS_VALUES = %w(today week month)
 
   validates :title, :status, presence: true
-  validates :title, length: { maximum: 50 }
+  validates :title, length: { minimum: 2, maximum: 50 }
   validates :memo, length: { maximum: 200 }
   validates :status, inclusion: { in: STATUS_VALUES }
 
