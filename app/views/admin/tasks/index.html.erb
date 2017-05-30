@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h2><%= "#{@user.name}さんの"%>タスク一覧</h2>
+  <h2><%= "#{@user.name}さんの" %>タスク一覧</h2>
 </div>
 
 <p>
@@ -16,15 +16,9 @@
         </div>
       </div>
       <% if @tasks.daily.present? %>
-      <% @tasks.daily.each do |task| %>
-      <%= render "attributes", task: task %>
-      <% end %>
-      <% else %>
-      <div class="list-group-item">
-        <div class="list-group-item-text">
-          <p>タスクがありません</p>
-        </div>
-      </div>
+          <% @tasks.daily.each do |task| %>
+              <%= render "attributes", task: task %>
+          <% end %>
       <% end %>
     </div>
   </div>
@@ -37,15 +31,9 @@
         </div>
       </div>
       <% if @tasks.weekly.present? %>
-      <% @tasks.weekly.each do |task| %>
-      <%= render "attributes", task: task %>
-      <% end %>
-      <% else %>
-      <div class="list-group-item">
-        <div class="list-group-item-text">
-          <p>タスクがありません</p>
-        </div>
-      </div>
+          <% @tasks.weekly.each do |task| %>
+              <%= render "attributes", task: task %>
+          <% end %>
       <% end %>
     </div>
 
@@ -56,15 +44,9 @@
         </div>
       </div>
       <% if @tasks.monthly.present? %>
-      <% @tasks.monthly.each do |task| %>
-      <%= render "attributes", task: task %>
-      <% end %>
-      <% else %>
-      <div class="list-group-item">
-        <div class="list-group-item-text">
-          <p>タスクがありません</p>
-        </div>
-      </div>
+          <% @tasks.monthly.each do |task| %>
+              <%= render "attributes", task: task %>
+          <% end %>
       <% end %>
     </div>
   </div>

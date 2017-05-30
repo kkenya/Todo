@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-8 col-xs-12">
       <h4 class="list-group-item-heading">
-        <%= task.title %>
+        <%= link_to task.title, [:admin, task.user, task, :speacks] %>
         <% unless task.open %>
         <span class="glyphicon glyphicon-sunglasses"></span>
         <% end %>

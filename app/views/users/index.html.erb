@@ -5,31 +5,31 @@
 <p><%= link_to "ユーザーの新規登録", :new_user, class: "btn btn-default" unless current_user %></p>
 
 <% if @users.present? %>
-<div class="row">
-  <div class="col-md-4 col-xs-12">
-    <%= form_tag :search_users, method: :get, class: "form-inline" do %>
+    <div class="row">
+      <div class="col-md-4 col-xs-12">
+        <%= form_tag :search_users, method: :get, class: "form-inline" do %>
     <span class="input-group">
       <%= text_field_tag "q", params[:q], class: "form-control", placeholder: "ユーザー名" %>
       <span class="input-group-btn">
         <%= submit_tag "検索", class: "btn btn-default" %>
       </span>
-      <% end %>
-    </span>
-  </div>
+        <% end %>
+        </span>
+      </div>
 
-  <div class="col-md-8 col-xs-12">
-    <% @users.each do |user| %>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <p><%= link_to user.name, [user, :tasks] %></p>
+      <div class="col-md-8 col-xs-12">
+        <% @users.each do |user| %>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <p><%= link_to user.name, [user, :tasks] %></p>
+              </div>
+            </div>
+        <% end %>
       </div>
     </div>
-    <% end %>
-  </div>
-</div>
 
 <% else %>
-<h4>ユーザーが登録されていません</h4>
+    <h4>ユーザーが登録されていません</h4>
 <% end %>
 
 <%= paginate @users %>

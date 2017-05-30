@@ -54,12 +54,12 @@ Rails.application.configure do
 
   #bullet
   config.after_initialize do
-    Bullet.enable = true# Bulletプラグインを有効
-    Bullet.alert = true# JavaScriptでの通知
-    Bullet.bullet_logger = true# log/bullet.logへの出力
-    Bullet.console = true# ブラウザのコンソールログに記録
+    Bullet.enable = true        # Bulletプラグインを有効
+    Bullet.alert = true         # JavaScriptでの通知
+    Bullet.bullet_logger = true # log/bullet.logへの出力
+    Bullet.console = true       # ブラウザのコンソールログに記録
     # Bullet.growl = true
-    Bullet.rails_logger = true# Railsログに出力
-    Bullet.add_footer = true#ブラウザのフッターに表示
+    Bullet.rails_logger = true  # Railsログに出力
+    Bullet.add_footer = true    #ブラウザのフッターに表示
   end
 end
