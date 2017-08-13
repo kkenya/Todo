@@ -52,8 +52,10 @@ group :development, :test do
   gem 'pry-byebug'
   # factory_girlを使用する
   gem 'factory_girl_rails', '~> 4.4.0'
-  #rspecによるテストを行う
+  # rspecによるテストを行う
   gem 'rspec-rails'
+  # railsの規約に沿わない記法を検出する
+  gem 'rubocop', require: false
 end
 
 group :development do

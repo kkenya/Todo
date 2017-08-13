@@ -1,9 +1,9 @@
-<div class="page-header">
+<div class='page-header'>
   <h2>ユーザーの新規登録</h2>
 </div>
 
 <%= form_for [:admin, @user] do |form| %>
-  <%= render "form", form: form %>
+  <%= render 'form', form: form %>
 
-  <%= form.submit "登録する", class: "btn btn-default", data: { disable_with: "登録中" } %>
+  <%= form.submit '登録する', class: 'btn btn-default', data: { disable_with: '登録中' } %>
 <% end %>
