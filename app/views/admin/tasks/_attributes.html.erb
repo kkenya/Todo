@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-md-8 col-xs-12">
       <h4 class="list-group-item-heading">
-        <%= link_to task.title, [:admin, task.user, task, :speacks] %>
+        <!--<%= link_to task.title, [:admin, task.user, task, :speacks] %>-->
+        <%= link_to task.title, user_task_speacks_path(task.user, task) %>
         <% unless task.open %>
         <span class="glyphicon glyphicon-sunglasses"></span>
         <% end %>

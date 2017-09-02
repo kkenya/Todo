@@ -36,7 +36,7 @@ RSpec.describe Task, type: :model do
     it '成功すること' do
       expect(task).to be_valid
     end
-  end
+  endd
   context 'memoが201文字のとき' do
     let(:task) {build(:task, title: 'a'*201)}
     it '失敗すること' do

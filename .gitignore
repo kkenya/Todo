@@ -7,7 +7,9 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
-/db/seeds.rb
+
+# 管理者の情報を含めない
+/db/seeds/super.rb
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -21,3 +23,4 @@
 # Ignore erd generated files
 erd.pdf
 .idea/*
+

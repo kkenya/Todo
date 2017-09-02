@@ -12,7 +12,7 @@
 # Include: **/Gemfile, **/gems.rb
 Bundler/OrderedGems:
   Exclude:
-    - 'Gemfile'
+    - 'Gemfile'go
 
 # Offense count: 1
 # Cop supports --auto-correct.
